@@ -1,0 +1,27 @@
+services:
+  database:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: "postgresdb"
+      POSTGRES_USER: ${POSTGRES_DB_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_DB_PASSWORD}
+      POSTGRES_HOST_AUTH_METHOD: trust
+      CLIENT_ENCODING: UTF8
+    ports:
+      - 5432:5432
+    volumes:
+      - data:/var/lib/postgresql/data
+
+
+  app:
+    build:
+      context: api
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - 8000:8000
+    depends_on:
+      - database
+
+volumes:
+  data:
