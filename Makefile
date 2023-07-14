@@ -7,6 +7,7 @@ stop:
 
 start:
 	docker-compose up -d --build
-	docker-compose exec api aerich init-db
+	docker-compose exec api aerich upgrade
+
 
 
