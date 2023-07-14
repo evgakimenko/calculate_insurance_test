@@ -6,6 +6,10 @@ class InsuranceRate(BaseModel):
     cargo_type: str
     rate: Decimal
 
+class Insurance(BaseModel):
+    date: date
+    type: InsuranceRate
+
 
 class InsuranceCalculation(BaseModel):
     cost: Decimal
@@ -16,4 +20,5 @@ class InsuranceBaseCreate(BaseModel):
     base_value: Decimal
     start_date: date
     end_date: date
+
 
