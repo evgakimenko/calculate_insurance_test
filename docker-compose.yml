@@ -14,12 +14,19 @@ services:
       - data:/var/lib/postgresql/data
 
 
-  app:
+  api:
     build:
       context: api
       dockerfile: ./docker/Dockerfile
+    environment:
+      POSTGRES_DB_USER: ${POSTGRES_DB_USER}
+      POSTGRES_DB_PASSWORD: ${POSTGRES_DB_PASSWORD}
+      POSTGRES_DB_PORT: ${POSTGRES_DB_PORT}
+      POSTGRES_DB_HOST: ${POSTGRES_DB_HOST}
     ports:
       - 8000:8000
+    volumes:
+      - ./api:/app
     depends_on:
       - database
 

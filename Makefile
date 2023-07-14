@@ -7,4 +7,6 @@ stop:
 
 start:
 	docker-compose up -d --build
-	docker-compose exec tortoise --config=config.TORTOISE_ORM runserver
+	docker-compose exec api aerich init-db
+
+
